@@ -52,9 +52,9 @@
       repo: https://github.com/sirogane1013/submanage-core.git
       dest: /var/www/html/submanage-core
   - name: composer install
-    composer:
-      command: install
-      working_dir: /var/www/html/submanage-core
+    shell:
+      cmd: install
+      chdir: /var/www/html/submanage-core
   - name: generate .env
     template:
       src: ./env.j2
@@ -75,3 +75,10 @@
       state: directory
       recurse: yes
       mode: a+w
+
+  - name: change document root
+      template:
+        src: ./vh.j2
+        dest: /etc/apache2/sites-available/000-default.conf
+  - name: restart apache
+      shell: /etc/init.d/apache2 restart
