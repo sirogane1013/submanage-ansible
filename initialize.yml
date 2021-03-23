@@ -13,11 +13,15 @@
       name:
         - apache2
         - php
-  - name: allow applications
+  - name: allow OpenSSH
     ufw:
       rule: allow
       name:
         - OpenSSH
+  - name: allow Apache
+    ufw:
+      rule: allow
+      name:
         - Apache
 
   - name: check composer
