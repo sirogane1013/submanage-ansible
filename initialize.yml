@@ -1,0 +1,21 @@
+---
+- hosts: webservers
+  tasks: 
+  - name: deny everything and enable UFW
+    ufw:
+      state: enabled
+      policy: deny
+  - name: allow OpenSSH
+    ufw:
+      rule: allow
+      name: OpenSSH
+  - name: apt update
+    apt:
+      update_cache: yes
+  - name: install apache
+    apt:
+      name: apache2
+  - name: allow Apache
+    ufw:
+      rule: allow
+      name: Apache
