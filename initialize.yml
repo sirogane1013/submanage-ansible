@@ -53,7 +53,7 @@
       dest: /var/www/html/submanage-core
   - name: composer install
     shell:
-      cmd: install
+      cmd: composer install
       chdir: /var/www/html/submanage-core
   - name: generate .env
     template:
@@ -81,4 +81,4 @@
       src: ./vh.j2
       dest: /etc/apache2/sites-available/000-default.conf
   - name: restart apache
-      shell: /etc/init.d/apache2 restart
+    shell: /etc/init.d/apache2 restart
