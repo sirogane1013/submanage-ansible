@@ -16,13 +16,11 @@
   - name: allow OpenSSH
     ufw:
       rule: allow
-      name:
-        - OpenSSH
+      name: OpenSSH
   - name: allow Apache
     ufw:
       rule: allow
-      name:
-        - Apache
+      name: Apache
 
   - name: check composer
     stat: path=/usr/local/bin/composer
