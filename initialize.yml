@@ -26,6 +26,10 @@
       rule: allow
       name: Apache
 
+  - name: add not root user
+    user:
+      name: devuser
+
   - name: check composer
     stat: path=/usr/local/bin/composer
     register: composer_bin
@@ -52,6 +56,8 @@
       repo: https://github.com/sirogane1013/submanage-core.git
       dest: /var/www/html/submanage-core
   - name: composer install
+    become: yes
+    become_user: devuser
     composer:
       command: install
       working_dir: /var/www/html/submanage-core
