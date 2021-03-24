@@ -1,12 +1,12 @@
 ---
 - name: install dependencies
-    apt:
-      name:
-        - php
-        - php-mbstring
-        - php-dom
-        - unzip
-        - zip
+  apt:
+    name:
+      - php
+      - php-mbstring
+      - php-dom
+      - unzip
+      - zip
 
 - name: check composer
   stat: path=/usr/local/bin/composer

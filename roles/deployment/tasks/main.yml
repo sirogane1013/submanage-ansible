@@ -1,8 +1,8 @@
 ---
 - name: checkout core
-    git:
-      repo: https://github.com/sirogane1013/submanage-core.git
-      dest: /var/www/html/submanage-core
+  git:
+    repo: https://github.com/sirogane1013/submanage-core.git
+    dest: /var/www/html/submanage-core
 
 - name: composer install
   shell:
