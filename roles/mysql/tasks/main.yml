@@ -5,19 +5,18 @@
 
 - name: disable default mysql module
   shell: 'dnf module disable -y mysql'
+  warn: false
 
 - name: install mysql
   dnf:
     name: mysql-community-server
 
+# /var/lib/mysqlが既に存在していると失敗する
 - name: insecure initialize
   shell: mysqld --initialize-insecure --user=mysql --datadir=/var/lib/mysql
 
 - name: start mysql
-  systemd:
-    name: mysqld
-    state: started
-    enabled: yes
+  shell: systemctl start mysqld
 
 - name: set mysql_user password
   shell: mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ mysql_root_password }}';"
