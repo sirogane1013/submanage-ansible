@@ -1,0 +1,35 @@
+---
+- name: add repository
+  dnf:
+    name: 'https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm'
+
+- name: disable default mysql module
+  shell: 'dnf module disable -y mysql'
+
+- name: install mysql
+  dnf:
+    name: mysql-community-server
+
+- name: insecure initialize
+  shell: mysqld --initialize-insecure --user=mysql --datadir=/var/lib/mysql
+
+- name: start mysql
+  systemd:
+    name: mysqld
+    state: started
+    enabled: yes
+
+- name: set mysql_user password
+  shell: mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ mysql_root_password }}';"
+
+- name: create user available from outside
+  shell: mysql -u root -p {{ mysql_root_password }} -e "CREATE USER '{{ mysql_user_name }}'@'192.168.1.%' IDENTIFIED BY '{{ mysql_user_password}}'; GRANT ALL ON *.* TO '{{ mysql_user_name }}'@'192.168.1.%'"
+
+- name: allow mysql through firewall
+  firewalld:
+    service: mysql
+    permanent: true
+    state: enabled
+
+- name: restart firewall
+  shell: firewall-cmd --reload
