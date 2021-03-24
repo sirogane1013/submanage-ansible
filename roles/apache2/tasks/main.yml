@@ -1,0 +1,9 @@
+---
+- name: install dependencies
+    apt:
+      name: apache2
+
+- name: allow Apache through firewall
+    ufw:
+      rule: allow
+      name: Apache

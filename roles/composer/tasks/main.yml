@@ -1,0 +1,30 @@
+---
+- name: install dependencies
+    apt:
+      name:
+        - php
+        - php-mbstring
+        - php-dom
+        - unzip
+        - zip
+
+- name: check composer
+  stat: path=/usr/local/bin/composer
+  register: composer_bin
+  tags: composer
+- block:
+  - name: download composer
+    get_url: 
+      url: https://getcomposer.org/installer
+      dest: /tmp/composer-setup.php
+  - name: install composer
+    shell: php /tmp/composer-setup.php --install-dir=/usr/local/bin
+  - name: rename composer.phar to composer
+    shell: mv /usr/local/bin/composer.phar /usr/local/bin/composer
+  - name: make composer executable
+    file:
+      path: /usr/local/bin/composer
+      mode: a+x
+      state: file
+  when: not composer_bin.stat.exists
+  tags: composer
