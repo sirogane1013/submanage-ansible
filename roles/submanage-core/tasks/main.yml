@@ -37,6 +37,9 @@
   template:
     src: ./vh.j2
     dest: /etc/apache2/sites-available/000-default.conf
-    
+
+- name: enable rewrite module
+  shell: a2enmod rewrite    
+
 - name: restart apache
   shell: /etc/init.d/apache2 restart

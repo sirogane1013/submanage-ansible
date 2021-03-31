@@ -1,12 +1,11 @@
 ---
 - name: download setup
-    get_url: 
-      url: https://deb.nodesource.com/setup_14.x
-      dest: nodesource_setup.sh
+  get_url: 
+    url: https://deb.nodesource.com/setup_14.x
+    dest: ./nodesource_setup.sh
 - name: run setup
-    shell: bash nodesource_setup.sh
+  shell: bash nodesource_setup.sh
 - name: install dependencies
   apt:
     name:
       - nodejs
-      - npm
