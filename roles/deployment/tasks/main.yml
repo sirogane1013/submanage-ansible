@@ -1,5 +1,5 @@
 ---
-- name: checkout core
+- name: get latest version
   git:
     repo: https://github.com/sirogane1013/submanage-core.git
     dest: /var/www/html/submanage-core
@@ -9,34 +9,6 @@
     cmd: composer install
     chdir: /var/www/html/submanage-core
 
-- name: generate .env
-  template:
-    src: ./env.j2
-    dest: /var/www/html/submanage-core/.env
-
-- name: generate APP_KEY
-  shell: 
-    cmd: php artisan key:generate
-    chdir: /var/www/html/submanage-core/
-
-- name: modify permission (storage)
-  file:
-    path: /var/www/html/submanage-core/storage
-    state: directory
-    recurse: yes
-    mode: a+w
-
-- name: modify permission (cache)
-  file:
-    path: /var/www/html/submanage-core/bootstrap/cache
-    state: directory
-    recurse: yes
-    mode: a+w
-
-- name: change document root
-  template:
-    src: ./vh.j2
-    dest: /etc/apache2/sites-available/000-default.conf
-    
-- name: restart apache
-  shell: /etc/init.d/apache2 restart
+- name: npm install
+  npm:
+    path: /var/www/html/submanage-core

@@ -5,4 +5,5 @@
     - firewall
     - apache2
     - composer
-    - deployment
+    - nodejs
+    - submanage-core

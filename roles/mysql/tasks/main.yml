@@ -5,7 +5,6 @@
 
 - name: disable default mysql module
   shell: 'dnf module disable -y mysql'
-  warn: false
 
 - name: install mysql
   dnf:
@@ -18,11 +17,14 @@
 - name: start mysql
   shell: systemctl start mysqld
 
+- name: restart mysql
+  shell: systemctl restart mysqld
+
 - name: set mysql_user password
   shell: mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ mysql_root_password }}';"
 
 - name: create user available from outside
-  shell: mysql -u root -p {{ mysql_root_password }} -e "CREATE USER '{{ mysql_user_name }}'@'192.168.1.%' IDENTIFIED BY '{{ mysql_user_password}}'; GRANT ALL ON *.* TO '{{ mysql_user_name }}'@'192.168.1.%'"
+  shell: mysql -u root -p{{ mysql_root_password }} -e "CREATE USER '{{ mysql_user_name }}'@'192.168.1.%' IDENTIFIED BY '{{ mysql_user_password}}'; GRANT ALL ON *.* TO '{{ mysql_user_name }}'@'192.168.1.%'"
 
 - name: allow mysql through firewall
   firewalld:

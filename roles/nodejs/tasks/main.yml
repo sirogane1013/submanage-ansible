@@ -1,0 +1,6 @@
+---
+- name: install dependencies
+  apt:
+    name:
+      - nodejs
+      - npm
