@@ -12,3 +12,6 @@
 - name: npm install
   npm:
     path: /var/www/html/submanage-core
+
+- name: npm run prod
+  shell: npm run prod
