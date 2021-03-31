@@ -14,4 +14,6 @@
     path: /var/www/html/submanage-core
 
 - name: npm run prod
-  shell: npm run prod
+  shell:
+    cmd: npm run prod
+    chdir: /var/www/html/submanage-core
