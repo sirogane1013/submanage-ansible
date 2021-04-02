@@ -17,3 +17,8 @@
   shell:
     cmd: npm run prod
     chdir: /var/www/html/submanage-core
+
+- name: php artisan migrate
+  shell:
+    cmd: php artisan migrate
+    chdir: /var/www/html/submanage-core

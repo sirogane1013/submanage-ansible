@@ -3,6 +3,3 @@
 
 [dbservers]
 # 192.168.1.2
-
-[stagingservers]
-# 192.168.1.3

@@ -1,6 +1,13 @@
+# アプリケーションのドメイン
 app_domain: <DOMAIN>
+
+# Web ServerがDB ServerのMySQLを利用する際のユーザー
 mysql_user_name: mysql
 mysql_user_password: <PASSWORD>
+
+# マスター/スレーブDBのアドレス
 db_master_host: <HOST>
 db_slave_host: <HOST>
+
+# データベース名
 db_name: submanagedb
