@@ -7,3 +7,8 @@
   ufw:
     rule: allow
     name: Apache
+
+- name: set mpm-prefork.conf
+  template:
+    src: ./mpm-prefork.j2
+    dest: /etc/apache2/mods-available/mpm-prefork.conf

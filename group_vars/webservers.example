@@ -1,1 +1,6 @@
 laravel_APP_KEY: <APP_KEY>
+apache_StartServers: 35
+apache_MinSpareServers: 5
+apache_MaxSpareServers: 35
+apache_MaxRequestWorkers: 35
+apache_MaxConnectionsPerChild: 0
