@@ -1,4 +1,9 @@
 ---
+- name: install dependencies
+  apt:
+    name:
+      - php-mysql
+
 - name: checkout core
   git:
     repo: https://github.com/sirogane1013/submanage-core.git
