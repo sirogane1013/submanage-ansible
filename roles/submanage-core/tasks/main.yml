@@ -14,11 +14,6 @@
     src: ./env.j2
     dest: /var/www/html/submanage-core/.env
 
-- name: generate APP_KEY
-  shell: 
-    cmd: php artisan key:generate
-    chdir: /var/www/html/submanage-core/
-
 - name: modify permission (storage)
   file:
     path: /var/www/html/submanage-core/storage

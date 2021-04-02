@@ -1,3 +1,6 @@
+app_domain: <DOMAIN>
 mysql_user_name: mysql
 mysql_user_password: <PASSWORD>
+db_master_host: <HOST>
+db_slave_host: <HOST>
 db_name: submanagedb
